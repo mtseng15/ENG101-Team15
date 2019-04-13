@@ -21,5 +21,5 @@ async def open_question():
     p.terminate()
 
 
-def answer():
+async def answer():
     print("My answer is yes")

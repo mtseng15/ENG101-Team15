@@ -4,6 +4,8 @@ from gpiozero import LED
 import random
 
 
+# NEEDS TO BE MADE ASYNCHRONOUS
+
 # Instantiate the LEDs
 led1 = LED(4) # Yellow
 led2 = LED(17) # Yellow
