@@ -20,7 +20,7 @@ import random
 
 
 def open_question():
-    print("What is the quesion you would like answered? Then press the button for my answer.")
+    print("What is the question you would like answered? Then press the button for my answer.")
 
 
 def answer():
