@@ -2,14 +2,23 @@
 
 
 import subprocess
-import time
+import asyncio
 import random
 
 
 
+# Play the opeing audio
+async def open_question():
+    # Start a process to play the audio file
+    p = subprocess.Popen("mpg123 ./audio/Opening.mp3".split())
 
-def open_question():
-    print("What is the quesion you would like answered? Then press the button for my answer.")
+    # Checks to see if the process has finished
+    while p.poll() == None:
+        # hands processing back, if the process hasn't finished
+        await asyncio.sleep(0.5)
+
+    # terminates the process
+    p.terminate()
 
 
 def answer():
