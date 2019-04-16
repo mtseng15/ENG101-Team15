@@ -61,14 +61,14 @@ async def answer():
 
 
 class Jeopardy(object):
-    def start(self):
+    async def start(self):
         self.p = subprocess.Popen(["mpg123","./audio/Jeopardy-theme-song.mp3"])
 
-        #while self.p.poll() == None:
-        #    # hands processing back, if the process hasn't finished
-        #    await asyncio.sleep(0.5)
-        #
-        #self.p.terminate()
+        while self.p.poll() == None:
+            # hands processing back, if the process hasn't finished
+            await asyncio.sleep(0.5)
 
-    def stop(self):
+        self.p.terminate()
+
+    async def stop(self):
         self.p.terminate()
