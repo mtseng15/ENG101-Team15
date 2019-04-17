@@ -10,6 +10,8 @@ button1 = Button(21)
 
 while True:
     # Wait until the user presses the button to start the game
+    # this will have to be rewriten aysnychronously because I am 98% sure
+    # that wait_for_press is blocking and we can't use blocking funcitons
     button(21).wait_for_press()
 
     # Aske the opening question
@@ -20,10 +22,10 @@ while True:
 
     # Answer the user
     answer()
-    
 
-    
-    
+
+
+
 
 # Prompt User to ask question
 # Ask a question then press the button for my answer?
