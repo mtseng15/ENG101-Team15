@@ -1,5 +1,5 @@
 from magic_audio import *
-from magic_lights import *
+
 
 # Instantiates the event loop
 loop = asyncio.get_event_loop()
@@ -17,10 +17,13 @@ async def haha(x):
 # This is the main function where all things will go
 async def main():
 
+    music = Jeopardy()
+
+    music.start()
+    time.sleep(10)
+    music.stop()
     # This creates a waiting loop for all the functions we want to be asyncronus to run
-    await asyncio.wait([
-        total_random()
-    ])
+
 
 
 
