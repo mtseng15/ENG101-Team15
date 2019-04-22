@@ -2,55 +2,51 @@
 # ENG101
 # Due 4/21/19
 
+from gpiozero import Button
 from magic_audio import *
+from magic_lights import *
 import asyncio
 
-async def haha():
-    for i in range(100):
-        print("haha")
-        await asyncio.sleep(0.5)
+# instantiate button
+button1=Button(18)
 
-
-async def laughing():
-    for i in range(100):
-        print("hehe")
-        await asyncio.sleep(0.5)
-
-        if i == 10:
-            loop.close()
-
-
+# main function
 def main():
-    loop = asyncio.get_event_loop()
+    # Instantiate a new event loop
+    loop = asyncio.new_event_loop()
 
     # Wait for button to be pressed
-    m = input("Press any key to start")
+    button1.wait_for_press()
 
     # Ask user qustion with flashing lights
     loop.run_until_complete(asyncio.wait([
-        open_question(),
-        haha()
-    ], return_when=asyncio.FIRST_COMPLETED))
+        open_question(), # ask the opening question
+        opening_lights() # display the opening lights  
+    ], return_when=asyncio.ALL_COMPLETED))
 
 
-    # Play Jeopardy theme with lights while waitin for user to press Button
-    m = input("Press a key to continue")
-    # Things are far from done here. It may simply be byond the scope of This
-    # class to try to get both lights and the Jeopardy theme to play simultaneously
-    # AND wait for the button to be pressed. It's rather tricky and beyond my leage
-    music = Jeopardy()
+    # Wait for the user to ask the question
+    button1.wait_for_press()
 
 
     # Play answer with more flashing lights
     loop.run_until_complete(asyncio.wait([
-        answer(),
-        haha()
+        answer(), # play the answer
+        rand_light_function() # display a random light function
     ], return_when=asyncio.FIRST_COMPLETED))
 
+    #Call function to turn off all LEDs
+    all_LEDs_off()
+
+    # Close the current event loop
+    loop.close()
 
 
+# safety against accedently starting an infinate loop
+if __name__ == "__main__":
+    # Print names and team
+    print("Team #15\nJacob Dumbacher\nZach Helton\nJason Riebe\nMicah Tseng")
 
-
-
-
-main()
+    # Run Magic 8 ball
+    while True:
+        main()
