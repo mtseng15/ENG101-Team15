@@ -7,3 +7,4 @@ magic_audio.py - functions dealing with audio
 
 magic_lights.py - functions dealing with lights
 
+https://github.com/mtseng15/ENG101-Team15
